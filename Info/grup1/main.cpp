@@ -20,6 +20,8 @@ int main()
 {
     fin >> n >> nr >> k1 >> k2;
 
+    VIATA_SOCIALA++;
+
     for( int i = 1; i <= n; i++ )
         fin >> a[i].abs;;
 
