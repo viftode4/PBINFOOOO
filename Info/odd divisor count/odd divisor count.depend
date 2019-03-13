@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1518714825 source:e:\info\odd divisor count\main.cpp
+	<iostream>
+	<cmath>
+

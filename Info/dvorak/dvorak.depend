@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1532432388 source:g:\info\dvorak\main.cpp
+	<fstream>
+	<cstring>
+
