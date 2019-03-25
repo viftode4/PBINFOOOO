@@ -1,12 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ull unsigned long long
+ifstream fin( "in.in" );
 const ull MOD = 1e9 + 7;
 ull n, k;
-vector<ull>g[100005];
-ull viz[100005];
+vector<ull>g[200010];
+ull viz[200010];
 ull x, y, c;
 ull sum, cate;
+ull dif;
 ull fpw( ull base, ull exp )
 {
     ull r = 1;
@@ -58,11 +60,7 @@ int main()
             {
                 cate = 0;
                 dfs( i );
-                // cout << i << ' ' << cate << '\n';
-                sum = ( sum - f( cate ) ) % MOD ;
-
-                if( sum < 0 )
-                    sum = ( sum + MOD ) % MOD;
+                sum = ( sum - f( cate ) + MOD ) % MOD;
 
             }
 
