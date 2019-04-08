@@ -34,7 +34,7 @@ int main()
     int ok = 0;
 
     for ( int i = 1; i <= n; i++ )
-            fout << dif[i] << ' ';
+        fout << dif[i] << ' ';
 
     fout << endl;
 
@@ -45,12 +45,9 @@ int main()
     if ( !ok )
         {
             if ( dif[1] == 0 )
-                fout << "YES\n0";
+                fout << "0";
             else
-                {
-                    fout << "YES\n1\n";
-                    fout << 1 << ' ' << n << ' ' << dif[1];
-                }
+                fout << 1 << ' ' << n << ' ' << dif[1];
 
             return 0;
         }
