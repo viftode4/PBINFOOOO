@@ -13,9 +13,14 @@ int main()
 
             if( x == 1 && b > 0 )
                 {
-                    b--;
-                    a++;
-                    a = min( ca, a );
+                    if( a == ca )
+                        a--;
+                    else
+                        {
+                            b--;
+                            a++;
+                            a = min( ca, a );
+                        }
                 }
             else if( x == 1 && b == 0 )
                 a--;
