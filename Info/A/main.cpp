@@ -1,15 +1,19 @@
-#include <bits/stdc++.h>
+#include <iostream>
+
 using namespace std;
-int a, b, m;
+int n;
+string s;
 int main()
 {
-    cin >> a >> b >> m;
-    int nr = m - 1 - a % m;
+    cin >> n >> s;
 
-    if( a + nr > b )
-        cout << b % m;
-    else
-        cout << m - 1;
+    for( int i = 0; i < n - 1; i++ )
+        if( s[i] > s[i + 1] )
+            {
+                cout << "YES\n" << i + 1 << ' ' << i + 2;
+                return 0;
+            }
 
+    cout << "NO";
     return 0;
 }
