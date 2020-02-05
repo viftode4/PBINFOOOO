@@ -26,7 +26,7 @@ int main()
         dist[i] = INF;
 
     dist[1] = 0;
-    pq.push( mp(0, 1) );
+    pq.push( mp( 0, 1 ) );
 
     while( !pq.empty() )
         {
@@ -44,8 +44,8 @@ int main()
                     }
         }
 
-    for( int i = 1; i <= n; i++ )
-        four << ( dist[i] < INF ? dist[i] : 0 ) << ' ';
+    for( int i = 2; i <= n; i++ )
+        fout << ( dist[i] < INF ? dist[i] : 0 ) << ' ';
 
     return 0;
 }
