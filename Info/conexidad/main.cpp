@@ -69,7 +69,8 @@ int main()
             }
 
     //ultimul anterior nu il leg de nimic deci il bag in extra
-    nrextra.pb( last );
+    if( last )
+        nrextra.pb( last );
 
     //nr de noduri de 1 > nr noduri "goale"
     if( nr1.size() > nrextra.size() )
@@ -82,10 +83,14 @@ int main()
                     extra[nr1[i - 1]]++;
                 }
 
-            int x = nrextra.back();
-            sol.pb( mp( x, nr1.back() ) );
-            extra[x]++;
-            extra[nr1.back()]++;
+            if( m != 0 )
+                {
+                    int x = nrextra.back();
+                    sol.pb( mp( x, nr1.back() ) );
+                    extra[x]++;
+                    extra[nr1.back()]++;
+                }
+
         }
     else
         {
