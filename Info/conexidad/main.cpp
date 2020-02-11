@@ -27,7 +27,7 @@ int main()
 {
     fin >> n >> m;
 
-    for( int i = 1; i <= n; i++ )
+    for( int i = 1; i <= m; i++ )
         {
             fin >> x >> y;
             g[x].pb( y );
@@ -72,6 +72,8 @@ int main()
     if( last )
         nrextra.pb( last );
 
+    // fout << nr1.size() << ' ' << nrextra.size() << '\n';
+
     //nr de noduri de 1 > nr noduri "goale"
     if( nr1.size() > nrextra.size() )
         {
@@ -83,7 +85,7 @@ int main()
                     extra[nr1[i - 1]]++;
                 }
 
-            if( m != 0 )
+            if( !nrextra.empty() )
                 {
                     int x = nrextra.back();
                     sol.pb( mp( x, nr1.back() ) );
