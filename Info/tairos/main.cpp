@@ -41,8 +41,6 @@ int main()
     use[1] = 1;
     dfs ( 1, 0 );
     dp[1][1] = 1;
-    //dp[0][0] = 1;
-   // dp[0][1] = 1;
 
     for ( int k = 1; k <= d; k++ )
         for ( int i = 1; i <= n; i++ )
