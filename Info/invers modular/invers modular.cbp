@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="ctc" />
+		<Option title="invers modular" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/ctc" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/invers modular" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/ctc" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/invers modular" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -32,8 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="ctc.in" />
-		<Unit filename="ctc.out" />
+		<Unit filename="inversmodular.in" />
+		<Unit filename="inversmodular.out" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
