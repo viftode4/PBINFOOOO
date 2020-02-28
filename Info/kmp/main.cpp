@@ -37,16 +37,6 @@ int main()
     fast();
     fin >> a >> b;
     calc_lps( a );
-//
-//    for( auto it : a )
-//        fout << it << ' ';
-//
-//    fout << endl;
-//
-//    for( int i = 0 ; i < a.size(); i++ )
-//        fout << lps[i] << ' ';
-//
-//    fout << endl;
     int len = 0;
 
     for( int i = 0; i < b.size(); i++ )
@@ -60,16 +50,14 @@ int main()
             if( len == a.size() )
                 {
                     len = lps[a.size() - 1];
-
-                    if( sol.size() < 1000 )
-                        sol.pb( i - a.size() + 1 );
+                    sol.pb( i - a.size() + 1 );
                 }
         }
 
-    fout << sol.size() << '\n';
+    fout << min( 1000, ( int )( sol.size() ) ) << '\n';
 
-    for( auto it : sol )
-        fout << it << ' ';
+    for( int i = 0; i < min( 1000, ( int )( sol.size() ) ); i++ )
+        fout << sol[i] << ' ';
 
     return 0;
 }
