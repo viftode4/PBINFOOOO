@@ -14,19 +14,18 @@ void fast()
 }
 vector<int>sol;
 string a, b;
-int lps[2000005];
-void calc_lps( string x )
+ll lps[2000005];
+void calc_lps()
 {
-    int len = 0;
-    lps[0] = 0;
-    int n = x.size(), i = 1;
+    ll len = 0;
+    int n = a.size();
 
     for( int i = 1; i < n; i++ )
         {
-            while( x[i] != x[len] && len )
+            while( a[i] != a[len] && len )
                 len = lps[len - 1];
 
-            if( x[i] == x[len] )
+            if( a[len] == a[i] )
                 len++;
 
             lps[i] = len;
@@ -36,10 +35,16 @@ int main()
 {
     fast();
     fin >> a >> b;
-    calc_lps( a );
-    int len = 0;
+    calc_lps();
 
-    for( int i = 0; i < b.size(); i++ )
+//    for( int i = 0; i < a.size(); i++ )
+//        fout << lps[i] << ' ';
+//
+//    fout << endl;
+    ll len = 0;
+    int n = b.size();
+
+    for( int i = 0; i < n; i++ )
         {
             while( a[len] != b[i] && len )
                 len = lps[len - 1];
@@ -48,15 +53,13 @@ int main()
                 len++;
 
             if( len == a.size() )
-                {
-                    len = lps[a.size() - 1];
-                    sol.pb( i - a.size() + 1 );
-                }
+                sol.pb( i - len + 1 );
+
         }
 
-    fout << min( 1000, ( int )( sol.size() ) ) << '\n';
+    fout << sol.size() << '\n';
 
-    for( int i = 0; i < min( 1000, ( int )( sol.size() ) ); i++ )
+    for( int i = 0; i < min( 1000,(int)(sol.size()) ); i++ )
         fout << sol[i] << ' ';
 
     return 0;

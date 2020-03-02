@@ -13,20 +13,22 @@ void fast()
     ios_base::sync_with_stdio( 0 );
 }
 int nr, n;
-int prim[2000005];
+bool prim[2000005];
 int main()
 {
     fast();
     fin >> n;
-    prim[1] = prim[0] = 1;
 
     for( int i = 2; i <= n; i++ )
-        if( !prim[i] )
+        prim[i] = 1;
+
+    for( int i = 2; i <= n; i++ )
+        if( prim[i] )
             {
                 nr++;
 
                 for( int j = 2 * i; j <= n; j += i )
-                    prim[j] = 1;
+                    prim[j] = 0;
             }
 
     fout << nr;
