@@ -17,7 +17,7 @@ int has( int x )
     return ( x % 151243 + 727 ) % 151243;
 }
 int n, t, x;
-set<int> a[151243];
+vector<int> a[151243];
 int main()
 {
     fast();
@@ -29,14 +29,14 @@ int main()
             int h = has( x );
 
             if( t == 1 )
-                a[h].insert( x );
+                a[h].pb( x );
             else if( t == 2 )
                 {
-                    if( a[h].count( x ) )
-                        a[h].erase( a[h].find( x ) );
+                    if( find( a[h].begin(), a[h].end(), x ) != a[h].end() )
+                        a[h].erase( find( a[h].begin(), a[h].end(), x ) );
                 }
             else if( t == 3 )
-                fout << a[h].count( x ) << '\n';
+                fout << ( ( find( a[h].begin(), a[h].end(), x ) != a[h].end() ) ? 1 : 0 ) << '\n';
         }
 
     return 0;

@@ -1,23 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-ifstream fin( "p2sah.in" );
-ofstream fout( "p2sah.out" );
+ifstream fin( "2sah.in" );
+ofstream fout( "2sah.out" );
 #define MOD 100003
 long long cer, n, k;
-long long baza[3][3] = {{1, 1, 0}, {1, 0, 1}, {1, 0, 0}};
-long long rez[3][3] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
-void afisare( long long rez[3][3] )
-{
-    fout << "MAT:\n";
-
-    for( int i = 0; i < 3; i++ )
-        {
-            for( int j = 0; j < 3; j++ )
-                fout << rez[i][j] << ' ';
-
-            fout << endl;
-        }
-}
 long long lgput( long long x, long long k )
 {
     long long r = 1;
@@ -33,38 +19,38 @@ long long lgput( long long x, long long k )
 
     return r % MOD;
 }
-void inmulteste( long long a[3][3], long long b[3][3], long long c[3][3] )
+struct matrix
 {
-    long long aux[3][3];
-
-    for( int x = 0; x < 3; x++ )
-        for( int y = 0; y < 3; y++ )
-            {
-                aux[x][y] = 0;
-
-                for( int i = 0; i < 3; i++ )
-                    aux[x][y] = ( aux[x][y] + ( a[x][i] * b[i][y] ) % MOD ) % MOD;;
-            }
+    int x[3][3] = {{1, 1, 0}, {1, 0, 1}, {1, 0, 0}};
+} mat, rez;
+matrix operator*( matrix a, matrix b )
+{
+    matrix rez;
 
     for( int i = 0; i < 3; i++ )
         for( int j = 0; j < 3; j++ )
-            c[i][j] = aux[i][j] ;
+            {
+                rez.x[i][j] = 0;
+
+                for( int k = 0; k < 3; k++ )
+                    rez.x[i][j] = ( rez.x[i][j] + 1LL * a.x[i][k] * b.x[k][j] % MOD ) % MOD;
+            }
+
+    return rez;
 }
-void lgput_mat( long long baza[3][3], long long k )
+void lgput_mat( matrix mat, int k )
 {
+    k--;
+
     while( k )
         {
             if( k % 2 )
-                {
-                    inmulteste( rez, baza, rez );
-                    //afisare( rez );
-                }
+                rez = rez * mat;
 
-            inmulteste( baza, baza, baza );
-            k = k / 2;
+            mat = mat * mat;
+            k /= 2;
         }
 }
-
 int main()
 {
     fin >> cer >> n >> k;
@@ -82,8 +68,8 @@ int main()
         fout << 2;
     else
         {
-            lgput_mat( baza, k - 1 );
-            fout << ( rez[0][0] * 2 + rez[0][1] + rez[0][2] ) % MOD;
+            lgput_mat( mat, n-k-1 );
+            fout << ( ( ( 1LL * rez.x[0][0] * 2 ) % MOD + 1LL * rez.x[1][0] ) % MOD + 1LL * rez.x[2][0] ) % MOD;
         }
 
     return 0;

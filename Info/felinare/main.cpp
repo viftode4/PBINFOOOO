@@ -1,99 +1,70 @@
 #include <bits/stdc++.h>
+#define st first
+#define nd second
 #define pb push_back
+#define mp make_pair
+#define ll long long
 using namespace std;
-
 ifstream fin( "felinare.in" );
 ofstream fout( "felinare.out" );
-
-vector<int>g[9000];
-vector<int>t[9000];
-//1 primul bec | intra in nod
-//2 al doilea bec | ies din nod
-int n, m;
-int f[9000][4], nr;
-int use[9000];
-void dfs( int i )
+void fast()
 {
-    use[i] = 1;
-    int ok = 1;
+    cin.tie( 0 );
+    ios_base::sync_with_stdio( 0 );
+}
+int l[10005];
+int r[10005];
+int use[10005];
+vector<int>ga[10005], gb[10005];
+int x, y;
+int n, m, k;
+int culpaj( int x )
+{
+    use[x] = 1;
 
-    if( !f[i][1] )
-        {
-            for( auto it : g[i] )
-                if( f[it][1] == 1 )
-                    {
-                        ok = 0;
-                        break;
-                    }
+    for( auto it : ga[x] )
+        if( !r[it] || ( !use[r[it]] && culpaj( r[it] ) ) )
+            {
+                r[it] = x;
+                l[x] = it;
+                return 1;
+            }
 
-            if( ok )
-                {
-                    nr++;
-                    f[i][1] = 1;
-                }
-
-            ok = 1;
-        }
-
-
-    if( !f[i][2] )
-        {
-            for( auto it : t[i] )
-                if( f[it][1] == 1 )
-                    {
-                        ok = 0;
-                        break;
-                    }
-
-            if( ok )
-                {
-                    nr++;
-                    f[i][2] = 1;
-                }
-        }
-
-
-    for( auto it : g[i] )
-        if( !use[it] )
-            dfs( it );
+    return 0;
 }
 int main()
 {
+    fast();
     fin >> n >> m;
 
     for( int i = 1; i <= m; i++ )
         {
-            int x, y;
             fin >> x >> y;
-            g[x].pb( y );
-            t[y].pb( x );
+            ga[x].pb( y );
+            gb[y].pb( x );
         }
 
-    for( int i = 1; i <= n; i++ )
+    int ok = 1, ans = 0;
+
+    while( ok )
         {
-            if( t[i].size() == 0 )
-                f[i][2] = 1, nr++;
+            ok = 0;
 
-            if( g[i].size() == 0 )
-                f[i][1] = 1, nr++;
+            for( int i = 1; i <= n; i++ )
+                use[i] = 0;
+
+            for( int i = 1; i <= n; i++ )
+                if( !use[i] && !l[i] )
+                    ok += culpaj( i );
+
+            ans += ok;
         }
 
-    for( int i = 1; i <= n; i++ )
-        dfs( i );
-
-    fout << nr << '\n';
+    fout << ans << '\n';
 
     for( int i = 1; i <= n; i++ )
-        {
-            if( f[i][1] && f[i][2] )
-                fout << "3\n";
-            else if( f[i][1] && !f[i][2] )
-                fout << "1\n";
-            else if( !f[i][1] && f[i][2] )
-                fout << "2\n";
-            else
-                fout << "0\n";
-        }
+        if( l[i] )
+            fout << i << ' ' << l[i] << '\n';
 
     return 0;
 }
