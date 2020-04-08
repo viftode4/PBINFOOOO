@@ -35,6 +35,9 @@ int main()
                 if( mini == s[i] )
                     pos.pb( i + 1 );
 
+            string minis = s;
+            int kk = 1;
+
             for( auto k : pos )
                 {
                     string cs = s;
@@ -42,11 +45,14 @@ int main()
                     for( int i = 0; i < n - k + 1; i++ )
                         reverse( cs.begin() + i, cs.begin() + i + k );
 
-                    sol.pb( {cs, k} );
+                    if( cs < minis )
+                        {
+                            kk = k;
+                            minis = cs;
+                        }
                 }
 
-            sort( sol.begin(), sol.end() );
-            cout << sol[0].st << '\n' << sol[0].nd << '\n';;
+            cout << minis << '\n' << kk << '\n';;
         }
 
     return 0;

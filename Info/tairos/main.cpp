@@ -47,11 +47,12 @@ int main()
             {
                 if ( p[i] != 1 )
                     {
-                        dp[k][i] = ( dp[k][i] + dp[k - 1][p[i]] ) % MOD;
+                        dp[k][i] += dp[k - 1][p[i]];
                     }
+
                 else
                     {
-                        dp[k][i] = ( dp[k][i] + dp[k][1] ) % MOD;
+                        dp[k][i] += dp[k][1];
 
                         for( auto it : f )
                             dp[k][i] = ( dp[k][i] + dp[k - 1][it] ) % MOD;

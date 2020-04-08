@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1586344501 source:g:\github\pbinfoooo\info\game project teza\draw.cpp
+	<iostream>
+	"draw.h"
+
+1586344369 g:\github\pbinfoooo\info\game project teza\draw.h
+
+1586344452 source:g:\github\pbinfoooo\info\game project teza\main.cpp
+	<Windows.h>
+	<iostream>
+	"shapes.h"
+	"draw.h"
+
+1586342762 g:\github\pbinfoooo\info\game project teza\shapes.h
+

@@ -6,11 +6,11 @@ vector<int>st;
 vector<int>g[110], f[110];
 int n, use[110], k;
 int timp[110];
-int v[110];
 int t1[110], t2[110];
+int ttotal;
 void dfs( int x )
 {
-    use[x] = 0;
+    use[x] = 1;
 
     for( auto it : g[x] )
         if( !use[it] )
@@ -44,38 +44,30 @@ int main()
 
     reverse( st.begin(), st.end() );
 
-    for( auto b : st )
+    for( int i = 0; i < n; i++ )
         {
-            int mx = 0;
+            int nod = st[i];
 
-            for( auto j : f[b] )
-                mx = max( mx, v[j] );
+            for( auto it : g[nod] )
+                t1[it] = max( t1[it], t1[nod] + timp[nod] );
 
-            t1[b] = mx;
-            v[b] = mx + timp[b];
+            ttotal = max( ttotal, t1[nod] + timp[nod] );
         }
 
-    int sol = 0;
-
-    for( int i = 1; i <= n; i++ )
-        {
-            sol = max( sol, v[i] );
-            v[i] = 0;
-        }
-
-    fout << sol << '\n';
     reverse( st.begin(), st.end() );
 
-    for( auto b : st )
+    for( int i = 1; i <= n; i++ )
+        t2[i] = ttotal - timp[i];
+
+    for( int i = 0; i < n; i++ )
         {
-            int mx = 0;
+            int nod = st[i];
 
-            for( auto j : g[b] )
-                mx = max( mx, v[j] );
-
-            t2[b] = sol - mx - timp[b];
-            v[b] = mx + timp[b];
+            for( auto it : f[nod] )
+                t2[it] = min(t2[it],t2[nod] - timp[it]);
         }
+
+    fout << ttotal << '\n';
 
     for( int i = 1; i <= n; i++ )
         fout << t1[i] << ' ' << t2[i] << '\n';
