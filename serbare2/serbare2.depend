@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1610524441 source:g:\github\pbinfoooo\serbare2\main.cpp
+	<iostream>
+	<fstream>
+
